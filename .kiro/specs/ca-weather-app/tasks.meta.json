@@ -359,6 +359,41 @@
         "chatSessionId": "sess_ec6200ec-51bc-4a06-bd1f-e097f7e6f5ff",
         "timestamp": 1792547275995
       }
+    ],
+    "3.2 Write unit tests for the catalog": [
+      {
+        "executionId": "ae279d77-8d03-492b-b91e-bb465f7cc3b0",
+        "chatSessionId": "sess_0c559d5b-2f21-4667-bbff-21371c3ec11c",
+        "timestamp": 1792704231575
+      }
+    ],
+    "4.2 Write unit tests for validation edge cases": [
+      {
+        "executionId": "ae279d77-8d03-492b-b91e-bb465f7cc3b0",
+        "chatSessionId": "sess_0c559d5b-2f21-4667-bbff-21371c3ec11c",
+        "timestamp": 1792704232457
+      }
+    ],
+    "4.3 Write property test for normalization idempotence": [
+      {
+        "executionId": "ae279d77-8d03-492b-b91e-bb465f7cc3b0",
+        "chatSessionId": "sess_0c559d5b-2f21-4667-bbff-21371c3ec11c",
+        "timestamp": 1792704233366
+      }
+    ],
+    "4.4 Write property test for content-bounds classification": [
+      {
+        "executionId": "ae279d77-8d03-492b-b91e-bb465f7cc3b0",
+        "chatSessionId": "sess_0c559d5b-2f21-4667-bbff-21371c3ec11c",
+        "timestamp": 1792704234269
+      }
+    ],
+    "4.5 Write property test for Historical_Perspective truncation": [
+      {
+        "executionId": "ae279d77-8d03-492b-b91e-bb465f7cc3b0",
+        "chatSessionId": "sess_0c559d5b-2f21-4667-bbff-21371c3ec11c",
+        "timestamp": 1792704235309
+      }
     ]
   }
 }

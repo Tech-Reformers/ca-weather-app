@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CA Weather — Demo</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!--
+    Demo_Banner and text wordmark (Task 12.1). The theme is an original,
+    PG&E-INSPIRED approximation built from generic CSS and plain text only:
+    no logo/image files, no official PG&E brand assets, nothing from pge.com.
+
+    Task 12.2 — assistive-tech exposure (Requirement 9.1):
+    The banner is marked up as a labeled landmark region so screen readers
+    announce it. role="region" (rather than role="banner") is used deliberately
+    to avoid conflicting with the <header> banner landmark below. The accessible
+    name includes the literal "DEMO" from the visible text content plus the
+    aria-label, so screen-reader users learn this is a non-production demo.
+  -->
+  <div
+    id="demo-banner"
+    class="demo-banner"
+    role="region"
+    aria-label="Demo environment banner: DEMO"
+  >DEMO</div>
+
+  <header id="app-header" class="app-header">
+    <span id="wordmark" class="wordmark">CA Weather — Demo</span>
+  </header>
+
+  <main id="app-main" class="app-main">
+    <h1 class="app-title">California Weather Forecast</h1>
+
+    <form id="forecast-form" class="forecast-form">
+      <label for="city-select" class="city-label">Select a California city</label>
+      <select id="city-select" class="city-select" disabled aria-describedby="error-region">
+        <option value="">Loading cities…</option>
+      </select>
+      <button id="submit-button" class="submit-button" type="submit" disabled>
+        Get Forecast
+      </button>
+    </form>
+
+    <!-- Loading indicator: hidden by default, shown while a request is in flight -->
+    <div
+      id="loading-indicator"
+      class="loading-indicator"
+      role="status"
+      aria-live="polite"
+      hidden
+    >
+      Loading forecast…
+    </div>
+
+    <!-- Error message region: hidden by default, populated on error/timeout -->
+    <div
+      id="error-region"
+      class="error-region"
+      role="alert"
+      aria-live="assertive"
+      hidden
+    ></div>
+
+    <!-- Results region: forecast summary + distinct labeled Historical_Perspective -->
+    <section id="results-region" class="results-region" aria-live="polite" hidden>
+      <h2 id="forecast-city-heading" class="forecast-city-heading"></h2>
+
+      <div id="forecast-summary" class="forecast-summary"></div>
+
+      <!--
+        Historical_Perspective as a distinct, labeled region (Requirements 4.3, 9.5).
+        Task 12.2 — region exposure: a <section> with an accessible name (via
+        aria-labelledby tied to its visible heading) is already a region landmark;
+        role="region" is set explicitly so it is unambiguously identifiable as a
+        distinct region programmatically.
+      -->
+      <section
+        id="historical-perspective-section"
+        class="historical-perspective-section"
+        role="region"
+        aria-labelledby="historical-perspective-heading"
+        hidden
+      >
+        <h3 id="historical-perspective-heading" class="historical-perspective-heading">
+          Historical Perspective
+        </h3>
+        <div id="historical-perspective" class="historical-perspective"></div>
+      </section>
+    </section>
+  </main>
+
+  <footer id="app-footer" class="app-footer">
+    <span class="footer-text">CA Weather — Demo · Non-production demonstration · Not affiliated with PG&amp;E</span>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

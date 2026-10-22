@@ -1,0 +1,282 @@
+/*
+ * CA Weather App - stylesheet.
+ *
+ * Task 11.1 established the structural layout rules.
+ * Task 12.1 adds the demo branding and Brand_Theme: the fixed Demo_Banner,
+ * the text-only wordmark, the themed utility-style header/footer, and a
+ * PG&E-INSPIRED palette (defined once as :root custom properties) applied
+ * consistently across the city selector, forecast summary, and the
+ * Historical_Perspective section.
+ *
+ * The theme is an original approximation built from generic CSS and text:
+ * no logo/image files, no official or trademarked PG&E brand assets, and
+ * nothing embedded, hotlinked, or scraped from pge.com.
+ *
+ * Palette pairings are chosen to be contrast-friendly (white on navy,
+ * near-black on light) so Task 12.2 can confirm WCAG AA.
+ *
+ * Task 12.2 — WCAG AA contrast (Requirement 9.3 accessibility note).
+ * Every text/background pairing in the theme was computed against the WCAG
+ * AA thresholds (>= 4.5:1 for normal text, >= 3:1 for large text). All pass
+ * with room to spare; no hex values needed adjustment:
+ *
+ *   white #ffffff on navy #0b2265 (header/footer/button) ...... 14.68:1  PASS
+ *   near-black #1a1a1a on surface #ffffff ..................... 17.40:1  PASS
+ *   near-black #1a1a1a on alt surface #f4f6fb ................. 16.10:1  PASS
+ *   banner near-black #1a1a1a on gold #ffc72c ................. 11.15:1  PASS
+ *   muted #45484f on surface #ffffff ...........................  9.16:1  PASS
+ *   muted #45484f on alt surface #f4f6fb ......................  8.47:1  PASS
+ *   error text #7a0016 on alt surface #f4f6fb ................. 10.56:1  PASS
+ *   navy heading #0b2265 on alt surface #f4f6fb ............... 13.57:1  PASS
+ *   navy heading #0b2265 on surface #ffffff ................... 14.68:1  PASS
+ *   white #ffffff on hover navy #091a4d ....................... 16.58:1  PASS
+ *   error border #b00020 on alt #f4f6fb (decorative) ..........  6.77:1  PASS
+ *
+ * NOTE: These are computed/automated contrast checks only. Full WCAG
+ * conformance still requires manual verification with assistive technologies
+ * (screen readers, keyboard-only navigation, zoom/reflow) and expert
+ * accessibility review — automated contrast math alone is not sufficient.
+ */
+
+/* ------------------------------------------------------------------ */
+/* Brand_Theme tokens (Requirement 9.3)                               */
+/* ------------------------------------------------------------------ */
+:root {
+  /* PG&E-inspired approximations — original values, no copied brand assets */
+  --color-primary: #0b2265;          /* dark/navy blue primary */
+  --color-primary-contrast: #1a1a1a; /* near-black alternate primary surface */
+  --color-accent: #ffc72c;           /* yellow/gold accent */
+  --color-surface: #ffffff;          /* page/content surface */
+  --color-surface-alt: #f4f6fb;      /* subtle off-white panel surface */
+  --color-text: #1a1a1a;             /* body text on light surfaces */
+  --color-text-muted: #45484f;       /* secondary text on light surfaces */
+  --color-text-on-primary: #ffffff;  /* text on the dark primary */
+  --color-border: #c7cedd;           /* control/panel borders */
+
+  /* Drives both the banner size and the content offset so they stay in sync */
+  --demo-banner-height: 2.5rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  /* Offset all content below the fixed Demo_Banner so nothing is obstructed
+     (Requirements 9.1, 9.4). Same token drives banner height and this offset. */
+  padding-top: var(--demo-banner-height);
+}
+
+/* ------------------------------------------------------------------ */
+/* Demo_Banner (Requirements 9.1, 9.4)                                */
+/* ------------------------------------------------------------------ */
+.demo-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--demo-banner-height);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-accent);
+  color: var(--color-primary-contrast);
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  /* letter-spacing pushes text right; indent balances it visually */
+  text-indent: 0.35em;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--color-primary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Header + text wordmark (Requirement 9.2)                           */
+/* ------------------------------------------------------------------ */
+.app-header {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  padding: 0.75rem 1rem;
+  border-bottom: 3px solid var(--color-accent);
+}
+
+.wordmark {
+  display: inline-block;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--color-text-on-primary);
+}
+
+/* ------------------------------------------------------------------ */
+/* Main content layout                                                */
+/* ------------------------------------------------------------------ */
+.app-main {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.app-title {
+  margin-top: 0;
+  color: var(--color-primary);
+}
+
+.forecast-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: 24rem;
+  padding: 1rem;
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: 6px;
+}
+
+.city-label {
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.city-select,
+.submit-button {
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+.city-select {
+  border: 1px solid var(--color-border);
+  border-radius: 4px;
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.city-select:focus-visible,
+.submit-button:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 1px;
+}
+
+.submit-button {
+  cursor: pointer;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border: 1px solid var(--color-primary);
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.submit-button:hover:not(:disabled) {
+  background-color: #091a4d; /* slightly darker navy on hover */
+}
+
+.submit-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Loading indicator */
+.loading-indicator {
+  margin-top: 1rem;
+  color: var(--color-text-muted);
+}
+
+.loading-indicator[hidden] {
+  display: none;
+}
+
+/* Error message region */
+.error-region {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background-color: var(--color-surface-alt);
+  border-left: 4px solid #b00020; /* error accent, on-theme contrast */
+  color: #7a0016;
+  border-radius: 4px;
+}
+
+.error-region[hidden] {
+  display: none;
+}
+
+/* Results region */
+.results-region {
+  margin-top: 1.5rem;
+}
+
+.results-region[hidden] {
+  display: none;
+}
+
+.forecast-city-heading {
+  color: var(--color-primary);
+  border-bottom: 2px solid var(--color-accent);
+  padding-bottom: 0.25rem;
+}
+
+.forecast-summary {
+  margin-top: 0.5rem;
+  white-space: pre-wrap;
+  padding: 1rem;
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  color: var(--color-text);
+}
+
+/* ------------------------------------------------------------------ */
+/* Historical_Perspective — distinct, on-theme accent callout         */
+/* (Requirement 9.5)                                                   */
+/* ------------------------------------------------------------------ */
+.historical-perspective-section {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: var(--color-surface-alt);
+  border: 1px solid var(--color-border);
+  border-left: 6px solid var(--color-accent);
+  border-radius: 6px;
+}
+
+.historical-perspective-section[hidden] {
+  display: none;
+}
+
+.historical-perspective-heading {
+  margin-top: 0;
+  margin-bottom: 0.25rem;
+  color: var(--color-primary);
+}
+
+.historical-perspective {
+  white-space: pre-wrap;
+  color: var(--color-text);
+}
+
+/* ------------------------------------------------------------------ */
+/* Footer — utility-style, text only (Requirement 9.3)                */
+/* ------------------------------------------------------------------ */
+.app-footer {
+  margin-top: 2rem;
+  padding: 1rem;
+  background-color: var(--color-primary);
+  color: var(--color-text-on-primary);
+  border-top: 3px solid var(--color-accent);
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 0.875rem;
+  color: var(--color-text-on-primary);
+}
